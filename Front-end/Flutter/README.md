@@ -3,7 +3,7 @@
 ## Overview Diagrams :
 
 ## Screenshots ( iOS, Android, Web Apps ) :
-| Features | iOS |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+| Features | iOS | Android | Web Apps |
+| ------------- | ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
