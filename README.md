@@ -30,6 +30,9 @@
 ## Experimental Results :
 ### Demo Video :
 - [***Let the Spot speak (Prototype Video)***](https://www.linkedin.com/posts/thunnathorne-synhiranakkrakul_let-the-spot-speak-whatever-you-want-this-ugcPost-6841222080848048128-tjl1)
-
+### .IPA For iOS :
+### .APK For Android :
+### URL For Web Apps :
+` https://mu-bosdyn.netlify.app/#/ `
 
 ## Conclusions :
