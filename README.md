@@ -34,9 +34,6 @@
 - Coming soon * Need Developer AppleID to export 
 ### .APK For Android :
 - Coming soon * Waiting for Final Production
-```html
-<mark>Marked text</mark>
-```
 ### URL For Web Apps :
 - [***TSFQX-BOSDYN***](https://mu-bosdyn.netlify.app/#/)
 
