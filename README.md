@@ -28,7 +28,7 @@
 - [***Python***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
 
 ## Experimental Results :
-- [Let the Spot speak (Prototype Video)](https://www.linkedin.com/posts/thunnathorne-synhiranakkrakul_let-the-spot-speak-whatever-you-want-this-ugcPost-6841222080848048128-tjl1)
+- [***Let the Spot speak (Prototype Video)***](https://www.linkedin.com/posts/thunnathorne-synhiranakkrakul_let-the-spot-speak-whatever-you-want-this-ugcPost-6841222080848048128-tjl1)
 
 
 ## Conclusions :
