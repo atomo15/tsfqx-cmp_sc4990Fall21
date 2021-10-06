@@ -21,11 +21,10 @@
 ## Overview Diagrams :
 
 ## Implementations :
-### [Front-End](/Front-end/) :
+### [***Front-End***](/Front-end/) :
 - [***Flutter***](/Front-end/Flutter/)
-### Back-End :
+### [***Back-End***](/Back-end/) :
 - [***Python***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
-
 
 ## Experimental Results :
 
