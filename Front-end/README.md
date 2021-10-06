@@ -1,6 +1,6 @@
 # Flutter (.Dart)
 
-## Screenshot
+## Screenshots
 
 ### Screenshot (iOS)
 
