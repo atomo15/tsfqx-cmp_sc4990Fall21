@@ -22,7 +22,7 @@
 
 ## Implementations :
 ### [Front-End](/Front-end/) :
-- [***Flutter***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Front-end/Flutter)
+- [***Flutter***](/Front-end/Flutter/)
 ### Back-End :
 - [***Python***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
 
