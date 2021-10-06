@@ -22,10 +22,14 @@
 ![overview-program](https://user-images.githubusercontent.com/49804761/136140542-8858dda1-95af-4993-92bd-c0e20c9d3d43.png)
 
 ## Implementations :
+
 ### [***Front-End***](/Front-end/) :
 - [***Flutter***](/Front-end/Flutter/)
+- **React.js**
+
 ### [***Back-End***](/Back-end/) :
 - [***Python***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
+
 
 ## Experimental Results :
 ### Demo Video :
