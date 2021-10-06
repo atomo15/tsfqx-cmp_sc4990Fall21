@@ -2,10 +2,4 @@
 
 ## Overview Diagrams :
 
-## Screenshots :
-
-### Screenshot (iOS)
-
-### Screenshot (Android)
-
-### Screenshot (Web Apps)
+## Screenshots (iOS, Android, Web Apps):
