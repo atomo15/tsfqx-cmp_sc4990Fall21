@@ -5,5 +5,5 @@
 ## Screenshots ( iOS, Android, Web Apps ) :
 | Features | iOS | Android | Web Apps |
 | ------------- | ------------- | ------------- | ------------- |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+| Text to Speak  | Content Cell  | Content Cell  | Content Cell  |
+| Save Audio file from Text  | Content Cell  | Content Cell  | Content Cell  |
