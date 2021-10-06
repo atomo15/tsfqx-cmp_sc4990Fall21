@@ -14,6 +14,10 @@
 ## Overview Diagrams :
 
 ## Implementations :
+### Front-End :
+- Flutter 
+### Back-End :
+- Python
 
 ## Experimental Results :
 
