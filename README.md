@@ -33,7 +33,6 @@
 ### .IPA For iOS :
 ### .APK For Android :
 ### URL For Web Apps :
-<button type="submit" >submit</button>
-` https://mu-bosdyn.netlify.app/#/ `
+- [TSFQX-BOSDYN](https://mu-bosdyn.netlify.app/#/)
 
 ## Conclusions :
