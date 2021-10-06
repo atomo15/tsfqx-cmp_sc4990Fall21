@@ -22,9 +22,9 @@
 
 ## Implementations :
 ### Front-End :
-- [Flutter](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Front-end/Flutter)
+- [***Flutter***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Front-end/Flutter)
 ### Back-End :
-- [Python](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
+- [***Python***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
 
 
 ## Experimental Results :
