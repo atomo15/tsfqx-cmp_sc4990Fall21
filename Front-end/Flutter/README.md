@@ -1,5 +1,9 @@
 # Flutter (.Dart)
 
+## Installation :
+- `dart pub get`
+- `flutter run --no-sound-null-safety`
+
 ## Overview Diagrams :
 
 ## Screenshots ( iOS, Android, Web Apps ) :
