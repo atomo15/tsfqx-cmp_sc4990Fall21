@@ -5,6 +5,7 @@
 ## Screenshots ( iOS, Android, Web Apps ) :
 | Features | iOS | Android | Web Apps |
 | ------------- | ------------- | ------------- | ------------- |
-| Text to Speak  | Content Cell  | Content Cell  | ![Screen Shot 2021-10-06 at 10 29 04 AM](https://user-images.githubusercontent.com/49804761/136235052-a35e2fcc-ddf6-4b56-a9f7-30ce2ab8e13b.png) |
+| Text to Speak  | Content Cell  | Content Cell  | Cell |
 | Save Audio file from Text  | Content Cell  | Content Cell  | Content Cell  |
 
+<img width="612" alt="Screen Shot 2021-10-06 at 10 32 17 AM" src="https://user-images.githubusercontent.com/49804761/136235603-b3e5e838-3875-4970-babb-65cbd8bfc703.png">
