@@ -31,7 +31,9 @@
 ### Demo Video :
 - [***Let the Spot speak (Prototype Video)***](https://www.linkedin.com/posts/thunnathorne-synhiranakkrakul_let-the-spot-speak-whatever-you-want-this-ugcPost-6841222080848048128-tjl1)
 ### .IPA For iOS :
+- Coming soon * Need Developer AppleID to export 
 ### .APK For Android :
+- Coming soon * Waiting for Final Production
 ### URL For Web Apps :
 - [***TSFQX-BOSDYN***](https://mu-bosdyn.netlify.app/#/)
 
