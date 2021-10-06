@@ -6,7 +6,7 @@
 
 
 ## Motivations :
-- After I know how to operate and access to control the Spot CAM (PTZ), I'm looking for a more beautiful User Interface and more powerful functionality. I desired to research the speaker on the Spot CAM for using the speaker in terms of factory field to notify or respond to the user, in case of emergency such as the usual circumstance like the spot detected the gas leak or respond the voice command from the apps such as the battery status or conversation with the user like Siri, Alexa or Google Assistant to earn better experience more than using controller by using voice command from the apps to control the Spot, more mobility and easy to command.
+- After I know how to operate and access to control the Spot CAM (PTZ), I'm looking for a more beautiful User Interface and more powerful functionality. I desired to research the speaker on the Spot CAM for using the speaker in terms of factory field to notify or respond to the user, in case of emergency such as the unusual circumstance like the spot detected the gas leak or respond the voice command from the apps such as the battery status or conversation with the user like Siri, Alexa or Google Assistant to earn better experience more than using controller by using voice command from the apps to control the Spot, more mobility and easy to command.
 
 ## Objectives :
 - Learn how to operate speaker on Spot CAM (PTZ).
