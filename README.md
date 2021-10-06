@@ -21,9 +21,10 @@
 
 ## Implementations :
 ### Front-End :
-- Flutter 
+- [Flutter](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Front-end/Flutter)
 ### Back-End :
-- Python
+- [Python](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
+
 
 ## Experimental Results :
 
