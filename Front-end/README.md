@@ -13,7 +13,7 @@
 - Don't need to use multiple languages such as Kotlin, Swift, HTML or React.js to implement all of these platforms. 
 - Even it takes time to study a new language, but it reduces the redundancy of code and saves time to using specific languages to install on each platform.
 
-### Disadvantage of Flutter :
+### Drawback of Flutter :
 - New Platform which take a time to study and implement with the new syntax and rules.
 - For Dart Languages, not a lot of people using it at present.
 - The constraint of the languages. 
