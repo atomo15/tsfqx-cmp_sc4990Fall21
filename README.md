@@ -7,7 +7,7 @@
 
 ## Motivations :
 
-## Oิิbjectives :
+## Objectives :
 
 ## Backgrounds :
 
