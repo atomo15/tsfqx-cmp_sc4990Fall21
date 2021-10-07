@@ -9,3 +9,7 @@
 - ```python 
   pip install SpeechRecognition 
   ```
+- ```python 
+    pip3 install flask flask_cors
+  ```
+
