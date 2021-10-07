@@ -36,13 +36,12 @@ import os
 import json
 import urllib3
 import inspect
+from ping3 import ping, verbose_ping
 # Utility Packages
-
-
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 app = Flask(__name__)
 CORS(app)
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 config = {
     "apiKey": "AIzaSyBSS5MdGRL9wdlRg2_f8Kw68v3z9QXPWMA",
@@ -59,8 +58,48 @@ storage = firebase.storage()
 
 @app.route('/', methods=['GET'])
 def test_api():
+    check_spot_status('192.168.80.3')
     return {'status':'works'}
 
 
+def check_spot_status(ip_address):
+    ping_result = ping(ip_address)
+    #print(ping_result)
+    if ping_result == None:
+        print("Unsuccessful - Unreachable to Spot")
+        return False
+    else:
+        print("Successful - Reachable to Spot")
+        return True
+
+def generateAiSound(content,filename,lang):
+    if content != "":
+        if filename == "":
+            filename = "spot_real_time"
+        
+        text = content
+        if lang != "":
+            language = lang
+        else:
+            language = 'en'
+            
+        try:
+            speech = gTTS(text = text, lang = language,tld='com',slow = False)
+            save_mp3 = filename+'.mp3'
+            speech.save(save_mp3)
+            sound = AudioSegment.from_mp3(filename+".mp3")
+            sound.export(filename+".wav", format="wav")
+            
+            location = os.getcwd()
+            path_mp3 = os.path.join(location,filename+".mp3")
+            #print(path_mp3)
+            #playsound(filename+'.wav')
+            os.remove(path_mp3)
+            print("export & remove ",filename,".mp3 successfully")
+        except:
+            print("gTTs has problem")
+            return False
+
 if __name__ == '__main__':
+    generateAiSound('test','test','en')
     app.run(debug=True)
