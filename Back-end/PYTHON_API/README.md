@@ -10,11 +10,11 @@
   pip3 install flask flask_cors SpeechRecognition gTTS pydub wave playsound pyrebase PyObjC
   ```
 ## Run Services :
+- Ngrok Services :
+    - [Download ngrok](https://ngrok.com/download)
 - ```python  
   python3 api.py
   ```
-- Ngrok Services :
-    - [Download ngrok](https://ngrok.com/download)
 - ```
   ngrok http 5000
   ```
