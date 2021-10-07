@@ -1,8 +1,12 @@
 # Flutter (.Dart)
 
 ## Installation :
-- `dart pub get`
-- `flutter run --no-sound-null-safety`
+- ```
+  dart pub get
+  ```
+- ```
+  flutter run --no-sound-null-safety
+  ```
 
 ## Overview Diagrams :
 
