@@ -1,6 +1,6 @@
 # Flutter (.Dart)
 
-## Installation :
+## Installation & Running Program :
 - ```
   dart pub get
   ```
