@@ -7,7 +7,7 @@
   python3 -m pip install --upgrade bosdyn-client bosdyn-mission bosdyn-choreography-client
   ```
 - ```python 
-  pip3 install flask flask_cors SpeechRecognition gTTS pydub wave playsound pyrebase PyObjC
+  pip3 install flask flask_cors SpeechRecognition gTTS pydub wave playsound pyrebase PyObjC ping3
   ```
 ## Run Services :
 - Ngrok Services :
