@@ -13,4 +13,9 @@
 - ```python  
   python3 api.py
   ```
+- Ngrok Services :
+    - [Download ngrok](https://ngrok.com/download)
+- ```
+  ngrok http 5000
+  ```
 
