@@ -7,9 +7,6 @@
   python3 -m pip install --upgrade bosdyn-client bosdyn-mission bosdyn-choreography-client
   ```
 - ```python 
-  pip install SpeechRecognition 
-  ```
-- ```python 
-    pip3 install flask flask_cors
+    pip3 install flask flask_cors SpeechRecognition 
   ```
 
