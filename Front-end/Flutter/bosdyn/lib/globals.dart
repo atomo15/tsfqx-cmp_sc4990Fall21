@@ -34,6 +34,10 @@ String SayByTextContent = "";
 
 String lang = "";
 
+String loginissue = "";
+
+
+
 List Filename_list = [];
 List Lang_list = [];
 List Contents_list = [];

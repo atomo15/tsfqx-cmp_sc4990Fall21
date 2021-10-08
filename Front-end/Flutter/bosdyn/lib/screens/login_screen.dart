@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -339,6 +340,15 @@ class _Login_ScreenState extends State<Login_Screen> {
               ),
               ),
               SizedBox(height: 20,),
+              Text.rich(
+                TextSpan(
+                  text: globals.loginissue!=''?globals.loginissue:'',
+                  style: TextStyle(
+                    color: Colors.red,
+                  )
+                  )
+              ),
+              SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: ElevatedButton(
@@ -347,40 +357,20 @@ class _Login_ScreenState extends State<Login_Screen> {
                     // the form is invalid.
                     if (_formKey.currentState!.validate()) {
                        _formKey.currentState?.save();
-                       print(globals.isLoggedIn);
-                       globals.isLoggedIn = true;
+                       //print(globals.isLoggedIn);
+                       //globals.isLoggedIn = true;
                        globals.username = username;
                        globals.password = passwords;
                        globals.IP = ip;
                        globals.API_IP = api_ip;
                        globals.statement = "";
-                       
+                       check_user_authen();
                        print('check ip');
                        print(globals.IP);
                          Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 4,)),
                           );
-                      //  Future<String> fetchAlbum() async {
-                      //    print("AM IN");
-                      //   final response = await http
-                      //       .get(Uri.parse('https://7325-161-130-189-212.ngrok.io/api'));
-
-                      //   if (response.statusCode == 200) {
-                      //     // If the server did return a 200 OK response,
-                      //     // then parse the JSON.
-                      //     //return Album.fromJson(jsonDecode(response.body));
-                      //     print(response.body);
-                      //     return "work";
-                      //   } else {
-                      //     // If the server did not return a 200 OK response,
-                      //     // then throw an exception.
-                      //     throw Exception('Failed to load album');
-                      //   }
-                      // }
-                      // fetchAlbum();
-                      //  print("Result Form : "+username+passwords+ip+api_ip);
-                       //Text(username+passwords+ip+api_ip);
                     }
                   },
                   child: const Text('Login'),
@@ -390,10 +380,75 @@ class _Login_ScreenState extends State<Login_Screen> {
             ],
           )
             
-          )
+          ),
           
           )
       )
     );
+  }
+   void check_user_authen() async{
+              Future<String> fetchApi() async {
+                        print("AM IN AUTHEN USER");
+                        if(globals.isLoggedIn!=true){
+                          print(globals.lang);
+                          // globals.isApiCon = false;
+                          // globals.isCamCon = false;
+                          // globals.isSpotCon = false;
+                          String api_url = globals.API_IP;
+                          String url =  'https://'+api_url+'.ngrok.io/authen';
+    
+                          try{
+                            final response = await  http.post(
+                              Uri.parse(url),
+                              headers: <String, String>{
+                                'Content-Type': 'application/json; charset=UTF-8',
+                              },
+                              body: jsonEncode(<String, String>{
+                                'user': globals.username,
+                                'password':globals.password,
+                                'ip':globals.IP,
+                              }),
+                            );
+                            if (response.statusCode == 200) {
+                              
+        
+                              var api_result = jsonDecode(response.body);
+                              print(api_result);
+                              var issue = api_result['issue'];
+                              var login_check = api_result['login_status'];
+                              //print("\n\n"+login_check.toString());
+                              
+                              //globals.isLoggedIn = api_result['login_status'];
+                              // print(globals.SayByTextContent);
+                              // globals.battery = api_result['battery'].toString();
+                              // globals.Temp =  api_result['temperature'].toString();
+                              // globals.isSpotCon = api_result['spot'];
+                              // globals.isCamCon = api_result['payload'];
+                              globals.statement = "";
+                              globals.isApiCon = true;
+                              if(login_check.toString()=='true'){
+                                print("Pass");
+                                globals.isLoggedIn = true;
+                                globals.isSpotCon = true;
+                                globals.loginissue = '';
+                              }else{
+                                globals.loginissue = issue.toString();
+                              }
+                              
+                              return "API work";
+                              } 
+                          }catch (error){
+                            print("post error"+error.toString());
+                          }
+                          
+                          
+                          
+                        }
+                        globals.isApiCon = false;
+                        print('api not working');
+                        return "api not working";
+                        
+                      }
+          await fetchApi();  
   }
 }

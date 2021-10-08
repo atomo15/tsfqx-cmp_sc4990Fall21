@@ -219,7 +219,7 @@ class CustomDrawer extends StatelessWidget {
                 globals.statement = "";
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 3,)),
+                  MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 4,)),
                 );
             },
             leading: FaIcon(FontAwesomeIcons.signOutAlt,color: Colors.red,),
