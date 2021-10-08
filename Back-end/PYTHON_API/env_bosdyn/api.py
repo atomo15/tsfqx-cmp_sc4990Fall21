@@ -39,6 +39,10 @@ import inspect
 from ping3 import ping, verbose_ping
 # Utility Packages
 
+#External Bosdyn Packages
+from BD import Bosdyn
+#External Bosdyn Packages
+
 app = Flask(__name__)
 CORS(app)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -58,18 +62,50 @@ storage = firebase.storage()
 
 @app.route('/', methods=['GET'])
 def test_api():
-    check_spot_status('192.168.80.3')
-    return {'status':'works'}
+    status_spot = False
+    print("Test API Called")
+    if isSpotCon('192.168.80.3') == True:
+        status_spot = True
+    return {'Api_status':'works','spot_status':status_spot}
 
+@app.route('/api', methods=['GET','POST'])
+def main():
+    username = "atom"
+    password = "atom29589990"
+    ip = "192.168.80.3"
+    if request.method == 'POST':
+        if request.get_json() != "":
+            data = request.get_json()
+            print("data => ",data)
+            usernmae = data['user']
+            password = data['password']
+            ip = data['ip']
+    # spot_status = False
+    payload_status = False
+    spot_status = isSpotCon(ip)
+    if spot_status == True:
+        spot = Bosdyn(username,password,'general')
+        robot = spot.setup()
+        if robot == "Failed authenticated":
+            return {'battery':'-99','temperature':'-99','spot':False,'payload':False,'login_status':False}
+        battery,temperature = spot.getBatteryTemPercent(robot)
+        payload_check = Bosdyn(username,password,'payload')
+        payload_status = payload_check.setup()
+        #spot_status = True
+    else:
+        battery = int(99)
+        temperature = int(37)
+    #print(battery,temperature)
+    return {'battery':battery,'temperature':temperature,'spot':spot_status,'payload':payload_status,'login_status':True}
 
-def check_spot_status(ip_address):
+def isSpotCon(ip_address):
     ping_result = ping(ip_address)
     #print(ping_result)
     if ping_result == None:
-        print("Unsuccessful - Unreachable to Spot")
+        print("\n\nUnsuccessful - Unreachable to Spot\n\n")
         return False
     else:
-        print("Successful - Reachable to Spot")
+        print("\n\nSuccessful - Reachable to Spot\n\n")
         return True
 
 def generateAiSound(content,filename,lang):
@@ -95,11 +131,12 @@ def generateAiSound(content,filename,lang):
             #print(path_mp3)
             #playsound(filename+'.wav')
             os.remove(path_mp3)
-            print("export & remove ",filename,".mp3 successfully")
+            print("\t==> export .wav & remove ",filename,".mp3 successfully")
         except:
             print("gTTs has problem")
             return False
 
 if __name__ == '__main__':
-    generateAiSound('test','test','en')
+    #generateAiSound('test','test','en')
+    #isSpotCon('192.168.80.3')
     app.run(debug=True)
