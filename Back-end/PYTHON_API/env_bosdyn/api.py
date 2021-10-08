@@ -98,6 +98,34 @@ def main():
     #print(battery,temperature)
     return {'battery':battery,'temperature':temperature,'spot':spot_status,'payload':payload_status,'login_status':True}
 
+@app.route('/authen', methods=['GET','POST'])
+def authen():
+    username = "atom"
+    password = "atom29589990"
+    ip = "192.168.80.3"
+    if request.method == 'POST':
+        if request.get_json() != "":
+            data = request.get_json()
+            print("data => ",data)
+            usernmae = data['user']
+            password = data['password']
+            ip = data['ip']
+            spot_status = isSpotCon(ip)
+            if spot_status == True:
+                spot = Bosdyn(username,password,'general')
+                robot = spot.setup()
+                if robot == "Failed authenticated":
+                    return {'login_status':False,'issue':'Username or Password incorrect for this spot'}
+                else:
+                    return {'login_status':True,'issue':'Ready'} 
+            else:
+                print("Cannot authenticate")
+                return {'login_status':False,'issue':'Cannot connect to the spot'}
+        else:
+            return {'login_status':False,'issue':'No data in json provided'}
+    else:
+        return {'login_status':False,'issue':'No data from POST method provided'}
+
 def isSpotCon(ip_address):
     ping_result = ping(ip_address)
     #print(ping_result)
