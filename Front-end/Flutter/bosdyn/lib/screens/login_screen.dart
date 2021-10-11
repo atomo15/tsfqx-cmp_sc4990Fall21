@@ -367,10 +367,10 @@ class _Login_ScreenState extends State<Login_Screen> {
                        check_user_authen();
                        print('check ip');
                        print(globals.IP);
-                         Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 4,)),
-                          );
+                        //  Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 4,)),
+                        //   );
                     }
                   },
                   child: const Text('Login'),
@@ -450,5 +450,9 @@ class _Login_ScreenState extends State<Login_Screen> {
                         
                       }
           await fetchApi();  
+          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 4,)),
+                          );
   }
 }
