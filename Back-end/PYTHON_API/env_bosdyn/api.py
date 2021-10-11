@@ -103,6 +103,7 @@ def authen():
     username = "atom"
     password = "atom29589990"
     ip = "192.168.80.3"
+    demo = True
     if request.method == 'POST':
         if request.get_json() != "":
             data = request.get_json()
@@ -111,10 +112,12 @@ def authen():
             password = data['password']
             ip = data['ip']
             spot_status = isSpotCon(ip)
-            if spot_status == True:
+            if spot_status == True or demo == True:
                 spot = Bosdyn(username,password,'general')
                 robot = spot.setup()
                 if robot == "Failed authenticated":
+                    if demo == True:
+                        return {'login_status':True,'issue':'Ready in Demo'} 
                     return {'login_status':False,'issue':'Username or Password incorrect for this spot'}
                 else:
                     return {'login_status':True,'issue':'Ready'} 
@@ -125,6 +128,38 @@ def authen():
             return {'login_status':False,'issue':'No data in json provided'}
     else:
         return {'login_status':False,'issue':'No data from POST method provided'}
+    
+@app.route('/speak', methods=['POST'])
+def speak():
+    if request.method == 'POST':
+        if request.get_json() != "":
+            data = request.get_json()
+            print(data['statement'])
+            #print(data['transcript'])
+            lang = 'en'
+            if data['lang'] != None:
+                lang = data['lang']
+
+            if generateAiSound(data['statement'],"",lang):
+                if isSpotCon():
+                    spot = Bosdyn(data['user'],data['password'],'audio')
+                    robot = spot.setup()
+                    print("before load")
+                    if load_sound(robot,"spot_real_time.wav") == True:
+                        print("After load")
+                        list_sound = robot.list_sounds()
+                        print('test => ',list_sound)
+                        sound = audio_pb2.Sound(name="spot_real_time")
+                        robot.play_sound(sound,None)
+                        return {'result':True,'content':data['statement'],'issue':'Works'}
+                    else:
+                        print("Falied load sound")
+                        return {'result':False,'content':data['statement'],'issue':'Load Sound Problem'}
+                else:
+                    print("Spot not connected")
+                    return {'result':False,'content':data['statement'],'issue':'Spot not connected, Generate Sound Works'}
+            return {'result':False,'content':data['statement'],'issue':'Generate Sound Issues'}
+    return 'Not OK'
 
 def isSpotCon(ip_address):
     ping_result = ping(ip_address)
@@ -135,6 +170,37 @@ def isSpotCon(ip_address):
     else:
         print("\n\nSuccessful - Reachable to Spot\n\n")
         return True
+    
+
+def load_sound(robot,filename):
+    name_val = filename.split(".")
+    print("load sound ",filename)
+    try:
+        sound = audio_pb2.Sound(name=name_val[0])
+    except:
+        print("Error => sound = audio_pb2.Sound(name=options.name)")
+        return False
+    path = ""
+    full_path = path + filename;
+    
+    print("read file")
+    
+    with open(full_path, 'rb') as fh:
+        print("read")
+        data = fh.read()
+    
+    if data is None:
+        print("error data")
+    else:
+        print("read file end")
+        
+    try:
+        robot.load_sound(sound, data)
+    except:
+        print("Load falied")
+        return False
+    print("Load successfully")
+    return True
 
 def generateAiSound(content,filename,lang):
     if content != "":
@@ -157,7 +223,7 @@ def generateAiSound(content,filename,lang):
             location = os.getcwd()
             path_mp3 = os.path.join(location,filename+".mp3")
             #print(path_mp3)
-            #playsound(filename+'.wav')
+            playsound(filename+'.wav')
             os.remove(path_mp3)
             print("\t==> export .wav & remove ",filename,".mp3 successfully")
         except:
