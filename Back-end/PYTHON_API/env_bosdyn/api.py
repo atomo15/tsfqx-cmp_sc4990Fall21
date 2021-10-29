@@ -131,6 +131,7 @@ def authen():
     
 @app.route('/speak', methods=['POST'])
 def speak():
+    demo = True
     if request.method == 'POST':
         if request.get_json() != "":
             data = request.get_json()
@@ -140,8 +141,8 @@ def speak():
             if data['lang'] != None:
                 lang = data['lang']
 
-            if generateAiSound(data['statement'],"",lang):
-                if isSpotCon():
+            if generateAiSound(data['statement'],"",lang) == True:
+                if isSpotCon(data['ip']) == True:
                     spot = Bosdyn(data['user'],data['password'],'audio')
                     robot = spot.setup()
                     print("before load")
@@ -152,6 +153,8 @@ def speak():
                         sound = audio_pb2.Sound(name="spot_real_time")
                         robot.play_sound(sound,None)
                         return {'result':True,'content':data['statement'],'issue':'Works'}
+                    elif demo == True:
+                        return {'result':True,'content':data['statement'],'issue':'Works in Demo Mode'}
                     else:
                         print("Falied load sound")
                         return {'result':False,'content':data['statement'],'issue':'Load Sound Problem'}
@@ -207,8 +210,10 @@ def generateAiSound(content,filename,lang):
         if filename == "":
             filename = "spot_real_time"
         
+        print("Debug generating sound",content,filename,lang)
+        
         text = content
-        if lang != "":
+        if len(lang)>0:
             language = lang
         else:
             language = 'en'
@@ -222,13 +227,132 @@ def generateAiSound(content,filename,lang):
             
             location = os.getcwd()
             path_mp3 = os.path.join(location,filename+".mp3")
+            path_wav = os.path.join(location,filename+".wav")
             #print(path_mp3)
             playsound(filename+'.wav')
             os.remove(path_mp3)
+            os.remove(path_wav)
             print("\t==> export .wav & remove ",filename,".mp3 successfully")
         except:
             print("gTTs has problem")
             return False
+        return True
+    
+@app.route('/text2file', methods=['GET','POST'])
+def text2file():
+    if request.method == 'POST':
+        if request.get_json() != "":
+            data = request.get_json()
+            username = data['user']
+            filename = data['filename']
+            content = data['contents']
+            #print("debug",data)
+            if data['lang'] == None:
+                lang = 'en'
+            else:
+                lang = data['lang']
+            
+            auth = firebase.auth()
+            email = 'atom9583@gmail.com'
+            password = '654321'
+            user = auth.sign_in_with_email_and_password(email,password)
+            filename_list,lang_list,contents_list,link_list = getContentsFromDB(username)
+            
+            if len(filename_list)>0:
+                for x in filename_list:
+                    if (filename+'.wav') == x:
+                        filename = filename+'_1'
+                        break;
+            file_path = filename+'.wav'
+            
+            if generateAiSound(content,filename,lang) == True:
+                global storage
+                #storage.child('atom/'+filename+'.wav').put(file_path)
+                storage.child(username+'/'+filename+'.wav').put(file_path)
+                #url = storage.child('atom/'+filename+'.wav').get_url(user['idToken'])
+                url = storage.child(username+'/'+filename+'.wav').get_url(user['idToken'])
+                #print(url)
+                full_filename = filename +'.wav'
+                db = firebase.database()
+                if lang == None:
+                    lang = 'en'
+                print("Upload ")
+                db.child("audio_spot_"+username).push({'Filename':full_filename,'Links':url,'Contents':content,'lang':lang})
+                #storage.child(filename+'.wav').download(filename=(filename+'.wav'))
+                getContentsFromDB(username)
+                print("success")
+            print('content: ',data['filename'],data['contents'])
+            return {"filename":'hello',"contents":'test'}
+        else:
+            print("no data")
+            return {'mission':'failed'}
+
+def getContentsFromDB(username):
+    filename = []
+    lang = []
+    contents = []
+    link = []
+    try:
+        db = firebase.database()
+    except:
+        print("No database")
+        return filename,lang,contents,link
+        
+    try:
+        a = db.child("audio_spot_"+username).get()
+    except:
+        print("No data of ",username)
+        return filename,lang,contents,link
+    
+   
+    if a.each() != None:
+        vals = []
+        audio_list = []
+        temp = []
+            
+        for tk in a.each():
+            #print(tk.val().values())
+            val = tk.val()
+            vals.append(val)
+        #print("check vals ",vals)
+            
+        if len(vals)>1:
+            for x in vals:
+                #print(x['id'])
+                filename.append(x['Filename'])
+                lang.append(x['lang'])
+                contents.append(x['Contents'])
+                link.append(x['Links'])
+                audio_list.append(temp)
+                temp = []
+        elif len(vals)==1:
+            # print(vals[0]['Filename'])
+            filename.append(vals[0]['Filename'])
+            lang.append(vals[0]['lang'])
+            contents.append(vals[0]['Contents'])
+            link.append(vals[0]['Links'])
+            audio_list.append(temp)
+            temp = []
+        #print(filename)
+        return filename,lang,contents,link
+    else:
+        print("No data")
+
+    # for y in audio_list:
+    #     print(y[0])
+    return filename,lang,contents,link
+
+
+@app.route('/Audio_Firebase', methods=['GET','POST'])
+def Audio_Firebase():
+    if request.method == 'POST':
+        data = request.get_json()
+        username = data['user']
+        filename,lang,contents,link = getContentsFromDB(username)
+        if filename == None or lang == None or contents == None or link == None:
+            return {'filename':filename,'lang':lang,'contents':contents,'link':link}
+        else:
+            return {'filename':filename,'lang':lang,'contents':contents,'link':link}
 
 if __name__ == '__main__':
     #generateAiSound('test','test','en')
