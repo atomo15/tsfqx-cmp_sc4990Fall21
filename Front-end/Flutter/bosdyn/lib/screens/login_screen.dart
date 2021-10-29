@@ -364,6 +364,21 @@ class _Login_ScreenState extends State<Login_Screen> {
                        globals.IP = ip;
                        globals.API_IP = api_ip;
                        globals.statement = "";
+                
+                      //  SnackBar(
+                      //   content: const Text(
+                      //     'Login.....',
+                      //     style: TextStyle(
+                      //       color: Colors.blue,
+                      //     ),),
+                      //   action: SnackBarAction(
+                      //     label: 'Undo',
+                      //     textColor: Colors.blue,
+                      //     onPressed: () {
+                      //       // Some code to undo the change.
+                      //     },
+                      //   ),
+                      // );
                        check_user_authen();
                        print('check ip');
                        print(globals.IP);
@@ -389,6 +404,11 @@ class _Login_ScreenState extends State<Login_Screen> {
    void check_user_authen() async{
               Future<String> fetchApi() async {
                         print("AM IN AUTHEN USER");
+                      //   AlertDialog(
+                      //    title: Text('test',style: TextStyle(
+                      //      backgroundColor: Colors.blue
+                      //    ),),
+                      //  );
                         if(globals.isLoggedIn!=true){
                           print(globals.lang);
                           // globals.isApiCon = false;

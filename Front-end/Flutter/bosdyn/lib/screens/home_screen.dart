@@ -317,10 +317,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                        print(statement);
                        sp_api();
-                         Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 0,)),
-                          );
                     }
                   },
                   child: 
@@ -490,6 +486,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         
                       }
           await fetchApi();  
+          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => BottomNavScreen(pages_index: 0,)),
+                          );
   }
 
 }
