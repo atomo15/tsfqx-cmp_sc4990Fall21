@@ -357,6 +357,7 @@ class _SubmitScreenState extends State<SubmitScreen> {
                                       'Content-Type': 'application/json; charset=UTF-8',
                                     },
                                     body: jsonEncode(<String, String>{
+                                      'user':globals.username,
                                       'filename':globals.Filename_list[index],
                                       'contents':globals.Contents_list[index],
                                       'link':globals.Link_list[index]
@@ -374,6 +375,7 @@ class _SubmitScreenState extends State<SubmitScreen> {
                                     globals.statement = "";
                                     globals.isApiCon = true;
                                     print("works");
+                                    globals.Contents_list = [];
                                     //return "work";
                                     } 
                                 }catch (error){
