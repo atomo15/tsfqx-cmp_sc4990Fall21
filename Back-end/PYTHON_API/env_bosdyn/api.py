@@ -231,7 +231,7 @@ def generateAiSound(content,filename,lang):
             #print(path_mp3)
             playsound(filename+'.wav')
             os.remove(path_mp3)
-            os.remove(path_wav)
+            #os.remove(path_wav)
             print("\t==> export .wav & remove ",filename,".mp3 successfully")
         except:
             print("gTTs has problem")
@@ -353,6 +353,85 @@ def Audio_Firebase():
             return {'filename':filename,'lang':lang,'contents':contents,'link':link}
         else:
             return {'filename':filename,'lang':lang,'contents':contents,'link':link}
+
+@app.route('/Play_Audio_Firebase', methods=['GET','POST'])
+def play_sound_firebase():
+    filename = ""
+    if request.method == 'POST':
+        if request.get_json() != "":
+            data = request.get_json()
+            #print(data)
+            #return {"result":"successfull"}
+            filename = str(data['user'])+'/'+str(data['filename'])
+            print("check ",filename)
+            #link ="https://firebasestorage.googleapis.com/v0/b/bosdyn-abc38.appspot.com/o/gn-ko.wav?alt=media&token=e042ad71-bbc1-40bc-b11e-00f818533948"
+            storage.child(filename).download('download.wav')
+            if isSpotCon(data['ip']) == True:
+                spot = Bosdyn(data['user'],data['password'],'audio')
+                robot = spot.setup()
+                print("before load")
+                if load_sound(robot,"download.wav") == True:
+                    print("After load")
+                    list_sound = robot.list_sounds()
+                    print('test => ',list_sound)
+                    sound = audio_pb2.Sound(name="download")
+                    robot.play_sound(sound,None)
+            else:
+                playsound('download.wav')
+            os.remove('download.wav')
+            return {"result":"successfull"}
+    return {'mission':'failed'}
+
+@app.route('/Del_Audio_Firebase', methods=['GET','POST'])
+def del_sound_firebase():
+    filename = ""
+    global storage
+    if request.method == 'POST':
+        if request.get_json() != "":
+            data = request.get_json()
+            auth = firebase.auth()
+            email = 'atom9583@gmail.com'
+            password = '654321'
+            filename = 'gn-ko.wav'
+            user = auth.sign_in_with_email_and_password(email,password)
+            #link = 'https://firebasestorage.googleapis.com/v0/b/bosdyn-abc38.appspot.com/o/gn-ko.wav?alt=media&token=e042ad71-bbc1-40bc-b11e-00f818533948'
+            # r = storage.getInstance().getFromurl(link)
+            
+            delContentsFromDB(data['user'],data['filename'],data['contents'])
+            #print(inspect.getmembers(storage))
+            #a = storage.bucket()
+            
+            
+            #client = storage.Client(credentials=cred, project=storage.storage_bucket)
+            #storage.bucket = client.get_bucket(storage_bucket)
+            #storage.delete(filename)
+                           
+    return {'dsadhasdkj':'dashjkmdasbnkdbnkm,'}
+
+def delContentsFromDB(user,filename,contents):
+    db = firebase.database()
+    path = "_"+user
+    try:
+        a = db.child("audio_spot"+path).get()
+    except:
+        print("a failed")
+        return False
+    if a:
+        vals = []
+        audio_list = []
+        temp = []
+        
+        for tk in a.each():
+            #print(tk.val().values())
+            val = tk.val()
+            if filename == val['Filename'] and contents == val['Contents']:
+                print(tk.key())
+                print(val['Filename'],val['Contents'])
+                db.child("audio_spot"+path).child(tk.key()).remove()
+                break;
+        #print("check vals ",vals)
+        #print(filename)
+    return True
 
 if __name__ == '__main__':
     #generateAiSound('test','test','en')
