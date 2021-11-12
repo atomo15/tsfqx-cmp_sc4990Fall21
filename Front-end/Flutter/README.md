@@ -7,6 +7,12 @@
 - ```
   flutter run --no-sound-null-safety
   ```
+  
+## Export the Program :
+### Web Apps (Deploying to Netlify):
+- ```
+  flutter build web --no-sound-null-safety
+  ```
 
 ## Overview Diagrams :
 
