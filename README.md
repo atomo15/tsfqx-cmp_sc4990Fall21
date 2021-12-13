@@ -33,7 +33,7 @@
 ## Experimental Results :
 ### Demo Video :
 - [***Let the Spot speak (Prototype Video)***](https://www.linkedin.com/posts/thunnathorne-synhiranakkrakul_let-the-spot-speak-whatever-you-want-this-ugcPost-6841222080848048128-tjl1)
-- [***Save Audio File on Firebase for Spot cam demo ***](https://www.youtube.com/watch?v=neZFiuHMxTk)
+- [***Save Audio File on Firebase for Spot cam demo***](https://www.youtube.com/watch?v=neZFiuHMxTk)
 
 ### .IPA For iOS :
 - Coming soon * Need Developer AppleID to export 
