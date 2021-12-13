@@ -300,9 +300,7 @@ class _SaveAudioScreennState extends State<SaveAudioScreen> {
                         if (value == '') {
                           return "can't be empty";
                         }
-                        if (value == 'Swimming') {
-                          return 'Swimming Not Allowed!';
-                        } else {
+                        else {
                           return null;
                         }
                       },

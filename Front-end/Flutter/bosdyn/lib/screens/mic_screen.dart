@@ -125,7 +125,8 @@ class _micScreenState extends State<micScreen> {
         duration: const Duration(milliseconds: 10000),
         repeatPauseDuration: const Duration(milliseconds: 100),
         repeat: false,
-        child: FloatingActionButton(
+        child: 
+        FloatingActionButton(
           onPressed: _listen,
           child: !_isListening?FaIcon(FontAwesomeIcons.microphoneAlt,color: Colors.black,):FaIcon(FontAwesomeIcons.solidPlayCircle,color: Colors.black,)
           //Icon(_isListening ? Icons.mic : Icons.mic_none),
@@ -196,7 +197,8 @@ void _listen() async {
                                 'password':globals.password,
                                 'ip':globals.IP,
                                 'statement':contents,
-                                'lang':'en'
+                                'lang':'en',     
+                                'ai':'true'
                               }),
                             );
                             if (response.statusCode == 200) {

@@ -446,6 +446,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             final response = await  http.post(
                               Uri.parse(url),
                               headers: <String, String>{
+                                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwicm9sZSI6ImFkbWluIiwibmFtZSI6InBhY2toYWkiLCJzaG9waWQiOiIiLCJpc3MiOiJwYWNraGFpIiwiYXVkIjoiaHR0cHM6Ly9wYWNraGFpLmNvbSJ9.0VJo-UBFDBCY5m5ldCzTfAYGZLWDsQ27AiZH4LFlup0',
                                 'Content-Type': 'application/json; charset=UTF-8',
                               },
                               body: jsonEncode(<String, String>{
@@ -453,7 +454,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 'password':globals.password,
                                 'ip':globals.IP,
                                 'statement':globals.statement,
-                                'lang':globals.lang
+                                'lang':globals.lang,
+                                'ai':"\0"
                               }),
                             );
                             if (response.statusCode == 200) {
