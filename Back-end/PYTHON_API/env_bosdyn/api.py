@@ -135,13 +135,34 @@ def speak():
     if request.method == 'POST':
         if request.get_json() != "":
             data = request.get_json()
-            print(data['statement'])
+            #print(data['statement'])
+            print(data)
             #print(data['transcript'])
+            statement = data['statement']
             lang = 'en'
             if data['lang'] != None:
                 lang = data['lang']
-
-            if generateAiSound(data['statement'],"",lang) == True:
+                
+            if data['ai'] != None:
+                if data['ai'] == 'true':
+                    print('Respond ',data['statement'])
+                    str_statement = str(data['statement'])
+                    start_command = ['spot']
+                    sub_statement = str_statement.split(' ')
+                    if start_command[0] == sub_statement[0]:
+                        print(str_statement[4:],' process responding')
+                        print(str_statement[4:])
+                        res = gen_conversion(str_statement[4:])
+                        if res != '':
+                            statement = res
+                        else:
+                            statement = 'respond'
+                    else:
+                        print("Normal speak")
+                else:
+                    print("Normal speak")
+                
+            if generateAiSound(statement,"",lang) == True:
                 if isSpotCon(data['ip']) == True:
                     spot = Bosdyn(data['user'],data['password'],'audio')
                     robot = spot.setup()
@@ -163,6 +184,38 @@ def speak():
                     return {'result':False,'content':data['statement'],'issue':'Spot not connected, Generate Sound Works'}
             return {'result':False,'content':data['statement'],'issue':'Generate Sound Issues'}
     return 'Not OK'
+
+def getStatusSpot():
+    username = "atom"
+    password = "atom29589990"
+    ip = "192.168.80.3"
+    spot_status = isSpotCon(ip)
+    demo = True
+    if spot_status == True:
+        spot = Bosdyn(username,password,'general')
+        robot = spot.setup()
+        battery,temperature = spot.getBatteryTemPercent(robot)
+        if robot == "Failed authenticated":
+            return {'login_status':False,'issue':'Username or Password incorrect for this spot'}
+        else:
+            return {'battery':battery,'temperature':temperature}
+    elif demo == True:
+        demobattery = "90"
+        demotemp = "37"
+        return {'battery':demobattery,'temperature':demotemp}
+    else:
+        print("Cannot authenticate")
+        return {'login_status':False,'issue':'Cannot connect to the spot'}
+    
+def gen_conversion(og_statement):
+    print('gen_conver : ',og_statement)
+    if og_statement == " battery":
+        result = getStatusSpot()
+        print("result => ",result)
+        res_statement = "The battery is "+str(result['battery'])+" percent"
+        res_statement = res_statement + "The temperature is "+str(result['temperature'])+" degree"
+        return res_statement;
+    return ""
 
 def isSpotCon(ip_address):
     ping_result = ping(ip_address)
