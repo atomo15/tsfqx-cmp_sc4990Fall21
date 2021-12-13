@@ -17,5 +17,3 @@
 - New Platform which take a time to study and implement with the new syntax and rules.
 - For Dart Languages, not a lot of people using it at present.
 - The constraint of the languages. 
-
-## React.js 
