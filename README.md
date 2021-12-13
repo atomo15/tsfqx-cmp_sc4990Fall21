@@ -25,7 +25,6 @@
 
 ### [***Front-End***](/Front-end/) :
 - [***Flutter***](/Front-end/Flutter/)
-- **React.js**
 
 ### [***Back-End***](/Back-end/) :
 - [***Python***](https://github.com/atomo15/tsfqx-cmp_sc4990Fall21/tree/master/Back-end/PYTHON_API)
