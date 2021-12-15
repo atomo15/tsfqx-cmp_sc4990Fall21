@@ -5,9 +5,6 @@
 ## Thunnathorne Synhiranakkrakul ( TSFQX ) [14351543]
 
 
-## Backgrounds :
-
-
 ## Motivations :
 - After I know how to operate and access to control the Spot CAM (PTZ), I'm looking for a more beautiful User Interface and more powerful functionality. I desired to research the speaker on the Spot CAM for using the speaker in terms of factory field to notify or respond to the user, in case of emergency such as the unusual circumstance like the spot detected the gas leak or respond the voice command from the apps such as the battery status or conversation with the user like Siri, Alexa or Google Assistant to earn better experience more than using controller by using voice command from the apps to control the Spot, more mobility and easy to command.
 
@@ -36,9 +33,12 @@
 - [***Save Audio File on Firebase for Spot cam demo***](https://www.youtube.com/watch?v=neZFiuHMxTk)
 
 ### .IPA For iOS :
-- Coming soon * Need Developer AppleID to export 
+- Need Developer AppleID to export, but from this project can build for .ipa
 ### .APK For Android :
-- Coming soon * Waiting for Final Production
+- ```
+  flutter build apk
+  
+  ```
 ### URL For Web Apps :
 - [***TSFQX-BOSDYN***](https://mu-bosdyn.netlify.app/#/)
 
