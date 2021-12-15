@@ -37,7 +37,6 @@
 ### .APK For Android :
 - ```
   flutter build apk
-  
   ```
 ### URL For Web Apps :
 - [***TSFQX-BOSDYN***](https://mu-bosdyn.netlify.app/#/)
